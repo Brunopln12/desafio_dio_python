@@ -28,24 +28,27 @@ while True:
             print("Operação falhou! O valor informado é inválido.")
 
     elif opcao == "s":
-        saldo_insuficiente = saldo == 0
-        if saldo_insuficiente:
-            print("Operação falhou! Sem saldo em sua conta.")
-            break
-
-        if LIMITE_SAQUES == numero_saques:
+        print(numero_saques)
+        if numero_saques >= LIMITE_SAQUES:
+            print("Operação falhou! Número de saques esgotados.")
+        else:
             valor = float(input("Informe o valor a ser sacado: "))
-            valor_sacado_maior_que_saldo_em_conta = valor < saldo
-            pode_sacar = valor < 500
-            if pode_sacar:
+            if valor <= 0:
+                print("Operação falhou! O valor informado é inválido.")
+            elif valor > saldo:
+                print("Operação falhou! Saldo insuficiente.")
+            elif valor > limite:
+                print("Operação falhou! O valor informado excede o limite de R$ 500.00 que pode ser sacado.")
+            else:
                 saldo -= valor
                 extrato += f"Saque: R$ {valor:.2f}\n"
                 numero_saques += 1
-            else:
-                print("Operação falhou! O valor informado é inválido.")
-        else:
-            print("Operação falhou! Número de saques esgotados.")
-    # elif opcao == "e":
+                print("Saque realizado com sucesso.")
+
+    elif opcao == "e":
+        print("EXTRATO".center(40, "#"))
+        print("Não foram realizadas movimentações." if not extrato else extrato)
+        print("".center(40, "#"))
        
     elif opcao == "q":
         break
