@@ -30,7 +30,7 @@ def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques):
             extrato += f"Saque:\tR$ {valor:.2f}\n"
             numero_saques += 1
             print(" SAQUE ".center(40, "#"))
-            print(f"Depósito: R$ {valor:>20}")
+            print(f"Saque: R$ {valor:>20}")
             print("#".center(40, "#"))
 
     return saldo, extrato, numero_saques
